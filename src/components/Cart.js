@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {ProductConsumer} from '../context';
 import { Link } from 'react-router-dom';
-import Product from './Product';
-
+import CartProduct from './cartProduct';
+import '../App.css';
 class Cart extends Component{
 state={
     arrs:[]
@@ -11,34 +11,36 @@ state={
 
     render(){
         return(
-     
+                   
+            <div className="container">
+                 <div className="row">
+                <h3 className="shoppinggcart">Shopping Cart</h3>
+                 </div>
+            <div className="row">
+            <div className="d-flex flex-column col-md-12">
             <ProductConsumer>
 {
     value=>{
-      var pro =  value.handlecart();
-     const products=value.arrayId;
-    return(
-    
-            <div className="container">
-           <div className="row">
-           <ul>
-           <li >{products}</li>  
-              
-              <li>{pro[3].id}</li>
-          </ul>
-          
-           </div>
-            </div>
+      var pros =  value.getitem();
+      console.log(pros);
+    return pros.map(
+        pro=>{
+            return <CartProduct key={pro.id} product={pro} />
+        }
+    );
+
+                          
+                        }
+                    
+                    }
+                </ProductConsumer>
+          </div>
+                </div>
+                           </div>
 
     );
             }
 }
-        </ProductConsumer>
-
-        );
-    
-        
-    }
-}
+      
 
 export default Cart;

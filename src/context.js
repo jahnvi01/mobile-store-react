@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {storeProducts,detailProduct, cartpros} from './data';
+import {storeProducts,detailProduct} from './data';
 const ProductContext=React.createContext();
 class ProductProvider extends Component{
 state={
     products:storeProducts,
     detailProducts:detailProduct,
     arrayId:[],
-    finalList:cartpros
+    finalList:[]
 }
 additem=(id)=>{
 const product=this.state.products.find(item=>item.id===id)
@@ -34,12 +34,9 @@ addcart=(id)=>{
 handlecart=()=>{
     var pro1;
    var items= this.state.arrayId;
-  //  console.log("handle");
-    var pros=this.state.finalList;
+    var pros=[];
    items.forEach(
         item=>{
-      
-         //   console.log("inin");
             pro1=this.additem(item);
             pros.push(pro1);
 
@@ -47,17 +44,25 @@ handlecart=()=>{
 // this.setState(()=>{
 //     return {finalList:pros}
 // });
-                       console.log(pros);
-//                        console.log("in handle cart");
-// console.log(this.state.finalList);
-//     console.log("out handle cart");
+                     //  console.log(pros);
+
 return pros;
 };
+getitem=()=>{
+var products=this.handlecart();
+
+ var pros=products.forEach(product => {
+     console.log(product.title);
+    return <li>{product.title} </li>
+});
+return products;
+
+}
 
     render(){
         return(
            <ProductContext.Provider value={
-               {...this.state,handledetail:this.handledetail,addcart:this.addcart,additem:this.additem,handlecart:this.handlecart}
+               {...this.state,handledetail:this.handledetail,addcart:this.addcart,additem:this.additem,getitem:this.getitem}
            }>
             {this.props.children}
            </ProductContext.Provider>
