@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Navbar from './components/Navbar';
+import Prolist from './components/Prolist';
+import Cart from './components/Cart';
+import Detail from './components/Detail';
+import { Switch, Route} from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <div className="wrapper">
+    <Navbar />
+    <Switch>
+
+      <Route exact path="/" component={Prolist} />
+
+      <Route path="/cart" component={Cart} /> 
+      <Route path="/details" component={Detail} />
+    </Switch>
+    
+    </div>
     );
   }
 }
