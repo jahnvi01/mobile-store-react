@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {ProductConsumer} from '../context';
-import { Link } from 'react-router-dom';
 import CartProduct from './cartProduct';
 import '../App.css';
+import './components.css';
 class Cart extends Component{
 state={
     arrs:[]
@@ -14,10 +14,12 @@ state={
                    
             <div className="container">
                  <div className="row">
-                <h3 className="shoppinggcart">Shopping Cart</h3>
+                <div className="col-md-12">
+                <h3 className="shoppingcart">Shopping Cart</h3>
+                 </div>
                  </div>
             <div className="row">
-            <div className="d-flex flex-column col-md-12">
+           
             <ProductConsumer>
 {
     value=>{
@@ -34,7 +36,7 @@ state={
                     
                     }
                 </ProductConsumer>
-          </div>
+        
                 </div>
                            </div>
 

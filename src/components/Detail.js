@@ -8,9 +8,12 @@ class Details extends Component{
     render(){
         return(
         <ProductConsumer>
-            {
+            { 
+        
                 value=>{
-                    const {id,title,img,price,company,info,inCart}=value.detailProducts;
+                    const {id,title,img,price,company,info}=value.detailProducts;
+         
+                 
                     return(
                         <div className="container">
                             <div className="row">
@@ -25,11 +28,14 @@ class Details extends Component{
                                      <h4>Company: {company}</h4>
                                      <p>{info} </p>     
                                      <Link to="/"><button>Continue shopping</button></Link>
-                                     <Link to="/cart"><button onClick={()=>{value.addcart(id)}}>Add to cart</button>         </Link> 
+                                    <button id="cartBtn" onClick={(event)=>{value.addcart(id,event)}}>Add to cart</button>      
                                 </div>
                             </div>
                         </div>
-                    );
+                 
+                 );
+              
+                    
                 }
             }
             </ProductConsumer>

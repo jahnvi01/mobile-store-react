@@ -14,55 +14,96 @@ return product;
 
 };
 handledetail=(id)=>{
+    var temp=this.state.arrayId;
     const product=this.additem(id );
     this.setState(()=>{
        return {detailProducts:product};
     });
-};
-addcart=(id)=>{
-    var temp=this.state.arrayId;
-    temp.push(id);
-    alert("product added");
-    this.setState(()=>{
-        return {arrayId:temp};
+  
+    if(temp.includes(id)){
+
     }
 
-);
-    console.log(temp);
-
 };
+changeBtn=(id)=>{
+    console.log(id);
+    var cart=document.getElementById("detail-title");
+    console.log(cart);
+}
+addcart=(id,event)=>{
+    var temp=this.state.arrayId;
+    if(!temp.includes(id))
+    {
+var x = event.target;
+    x.innerHTML="In Cart"
+// var y = event.target.nextSibling;
+
+// y.style.display = "block";
+
+
+temp.push(id);
+    this.setState(()=>{
+        return {arrayId:temp};
+    },
+
+
+);
+}  
+};
+
 handlecart=()=>{
     var pro1;
    var items= this.state.arrayId;
     var pros=[];
    items.forEach(
         item=>{
+
             pro1=this.additem(item);
             pros.push(pro1);
 
 });
-// this.setState(()=>{
-//     return {finalList:pros}
-// });
-                     //  console.log(pros);
+
 
 return pros;
 };
 getitem=()=>{
 var products=this.handlecart();
-
- var pros=products.forEach(product => {
-     console.log(product.title);
-    return <li>{product.title} </li>
-});
 return products;
 
 }
+delete=(id)=>{
+var i=this.state.arrayId.indexOf(id);
+if (i > -1) {
+    this.state.arrayId.splice(i, 1);
+  }
 
+}
+subtotal=(price,event)=>{
+  var p=price;
+  var q=event.target;
+
+
+var qty=p*q.value;
+if(qty>=0){
+q.nextSibling.innerHTML=qty;
+
+
+}
+else{
+   q.nextSibling.innerHTML="00";
+}
+}
     render(){
         return(
            <ProductContext.Provider value={
-               {...this.state,handledetail:this.handledetail,addcart:this.addcart,additem:this.additem,getitem:this.getitem}
+               {...this.state,
+                handledetail:this.handledetail,
+                addcart:this.addcart,
+                additem:this.additem,
+                delete:this.delete,
+                getitem:this.getitem,
+                changeBtn:this.changeBtn ,
+                subtotal:this.subtotal   }
            }>
             {this.props.children}
            </ProductContext.Provider>

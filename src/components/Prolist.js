@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {ProductConsumer} from '../context';
 import Product from './Product';
+import './components.css';
 class Productlist extends Component{
 
     render(){
