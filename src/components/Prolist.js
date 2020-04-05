@@ -7,7 +7,7 @@ class Productlist extends Component{
     render(){
   
         return(
-            <div className="row">
+            <div className="row" style={{justifyContent:"center"}}>
 
             <ProductConsumer>
                     {
