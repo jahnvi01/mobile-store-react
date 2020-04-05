@@ -85,7 +85,8 @@ subtotal=(price,event)=>{
 
 var qty=p*q.value;
 if(qty>=0){
-q.nextSibling.innerHTML=qty;
+   q.parentNode.parentNode.nextSibling.innerHTML=qty
+//q.nextSibling.innerHTML=qty;
 
 
 }
